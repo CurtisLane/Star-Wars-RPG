@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Star Wars RPG</title>
+    <!-- stylesheets -->
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- starwars favicon -->
     <link href="assets/favicon/favicon.ico" rel="icon" type="image/x-icon" />
+
+    <!-- jQuery -->
+    <script
+  src="http://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+  crossorigin="anonymous"></script>
+
 </head>
 <body>
     
@@ -17,16 +26,19 @@
     <div class="characterImagesContainer" id="characterImages">
         <div class="characterImageDiv" id="lukeSkywalker">
             <img src="assets/images/lukeIMG.jpg" class="characterImage" alt="Luke Skywalker" id="lukeSkywalkerImg">
-            <p>Luke Skywalker</p><p>Health:</p>
+            <p>Luke Skywalker</p><p id="lukeHp">Health: </p>
         </div>
         <div class="characterImageDiv" id="obiWan">
             <img src="assets/images/obiWanIMG.jpg" class="characterImage" alt="Obi Wan" id="obiWanImg">
+            <p>Obi Wan</p><p id="obiHp">Health: </p>
         </div>
         <div class="characterImageDiv" id="darthMaul">
             <img src="assets/images/darthMaulIMG.jpg" class="characterImage" alt="Darth Maul"id="darthMaulImg">
+            <p>Darth Maul</p><p id="maulHp">Health: </p>
         </div>
         <div class="characterImageDiv" id="darthSidious">
             <img src="assets/images/darthSidiousIMG.jpg" class="characterImage" alt="Darth Maul"id="darthSidiousImg">
+            <p>Darth Sidious</p><p id="sidiousHp">Health: </p>
         </div>
     </div>
 
