@@ -25,10 +25,24 @@ let characters = {
     },
 }
 
+// select character by clicking(put inside for loop, create array of id's)
+const imgDivIds = ['#lukeSkywalker','#obiWan','#darthMaul','#darthSidious']
+for (i=0; i<=imgDivIds.length; i++) {
+    let thisOne = imgDivIds[i];
+    $(thisOne).click(function(event) {
+        $(thisOne).addClass('greenBackground');
+        $('.characterImageDiv:not(thisone)').addClass('redBackground');
+        console.log('clicked');
+        console.log(event)
+    }) 
+    
+}
+
+
 
 // button press triggers attack function
-// attack function reduces enemy hp by your ap
 
+// attack function reduces enemy hp by your ap
 
 //enemy character only has counter attack power[never changes]
 
