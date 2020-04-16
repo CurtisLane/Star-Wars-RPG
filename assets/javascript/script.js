@@ -1,3 +1,5 @@
+// Objects -------------------------
+
 // containers for each character. include varied health ponts(hp), attack power(ap)[increases each attack], and counter attack power(cap).
 let characters = {
     lukeSkywalker: {
@@ -25,29 +27,49 @@ let characters = {
     },
 }
 
-// select character by clicking(put inside for loop, create array of id's)
+// Messages displayed to user
+let messages = {
+    begin: "Choose your character!",
+    attack: "You've chosen your enemy, now click the attack button.",
+    firstEnemy: "Choose your first enemy.",
+    firstEnemyDefeated: "You defeated the first enemy, choose your next enemy.",
+    secondEnemyDefeated: "You defeated the second enemy, choose your final opponent!",
+    thirdEnemyDefeated: "You win! Congradulations!",
+    playerDefeated: "You lose. Try again.",
+}
+
+// Global variables -------------------------
+
 const imgDivIds = ['#lukeSkywalker','#obiWan','#darthMaul','#darthSidious']
-for (i=0; i<=imgDivIds.length; i++) {
+
+// Main -------------------------
+
+// Clicking a character will turn it's background to green and all others to red
+
+for (i=0; i<=imgDivIds.length; i++) {    
     let thisOne = imgDivIds[i];
     $(thisOne).click(function(event) {
         $(thisOne).addClass('greenBackground');
         $('.characterImageDiv:not(thisone)').addClass('redBackground');
         console.log('clicked');
         console.log(event)
+        return event;
     }) 
-    
 }
 
-
-
-// button press triggers attack function
-
-// attack function reduces enemy hp by your ap
+//after choosing enemy make attack button appears. clicking button subtracts your ap from their hp. ap increments each attack.
 
 //enemy character only has counter attack power[never changes]
+
+// DOM manipulation -------------------------
 
 // add hp to dom
 $("#lukeHp").append(characters.lukeSkywalker.hp);
 $("#obiHp").append(characters.obiWan.hp);
 $("#maulHp").append(characters.darthMaul.hp);
 $("#sidiousHp").append(characters.darthSidious.hp);
+
+// user message
+$('#pMessage').text(messages.begin);
+
+// Function calls -------------------------

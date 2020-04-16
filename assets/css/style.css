@@ -55,3 +55,17 @@ p {
     background-color: green !important;
     border-color: green !important;
 }
+
+.chosenEnemy {
+    position: relative;
+    left: 400px;
+}
+
+.userMessage {
+    position: relative;
+    left: 250px;
+}
+
+.pMessage {
+    color: white;
+}
