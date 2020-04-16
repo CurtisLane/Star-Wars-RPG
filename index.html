@@ -23,31 +23,40 @@
     <header class="header" id="header">
         <h1 class="headerTitle" id="headerTitle">Star Wars RPG!</h1>
     </header>
-    
-    <!-- displays message to user from JS dom manipulation -->
-    <div class="userMessage" id="userMessage">
-        <p class="pMessage" id="pMessage"></p>
-    </div>
 
-    <!-- character images -->
-    <div class="characterImagesContainer" id="characterImages">
-        <div class="characterImageDiv" id="lukeSkywalker">
-            <img src="assets/images/lukeIMG.jpg" class="characterImage" alt="Luke Skywalker" id="lukeSkywalkerImg">
-            <p>Luke Skywalker</p><p id="lukeHp">Health: </p>
+    <div class="container">
+
+        <!-- displays message to user from JS dom manipulation -->
+        <div class="userMessage" id="userMessage">
+            <p class="pMessage" id="pMessage"></p>
         </div>
-        <div class="characterImageDiv" id="obiWan">
-            <img src="assets/images/obiWanIMG.jpg" class="characterImage" alt="Obi Wan" id="obiWanImg">
-            <p>Obi Wan</p><p id="obiHp">Health: </p>
+
+        <!-- attack button -->
+        <div class="button">
+            <button class="myButton zeroOpacity" id="attackButton">Attack</button>
         </div>
-        <div class="characterImageDiv" id="darthMaul">
-            <img src="assets/images/darthMaulIMG.jpg" class="characterImage" alt="Darth Maul"id="darthMaulImg">
-            <p>Darth Maul</p><p id="maulHp">Health: </p>
-        </div>
-        <div class="characterImageDiv" id="darthSidious">
-            <img src="assets/images/darthSidiousIMG.jpg" class="characterImage" alt="Darth Maul"id="darthSidiousImg">
-            <p>Darth Sidious</p><p id="sidiousHp">Health: </p>
+
+        <!-- character images -->
+        <div class="characterImagesContainer" id="characterImages">
+            <div class="characterImageDiv" id="lukeSkywalker">
+                <img src="assets/images/lukeIMG.jpg" class="characterImage" alt="Luke Skywalker" id="lukeSkywalkerImg">
+                <p>Luke Skywalker</p><p id="lukeSkywalkerP"></p>
+            </div>
+            <div class="characterImageDiv" id="obiWan">
+                <img src="assets/images/obiWanIMG.jpg" class="characterImage" alt="Obi Wan" id="obiWanImg">
+                <p>Obi Wan</p><p id="obiWanP"></p>
+            </div>
+            <div class="characterImageDiv" id="darthMaul">
+                <img src="assets/images/darthMaulIMG.jpg" class="characterImage" alt="Darth Maul"id="darthMaulImg">
+                <p>Darth Maul</p><p id="darthMaulP"></p>
+            </div>
+            <div class="characterImageDiv" id="darthSidious">
+                <img src="assets/images/darthSidiousIMG.jpg" class="characterImage" alt="Darth Maul"id="darthSidiousImg">
+                <p>Darth Sidious</p><p id="darthSidiousP"></p>
+            </div>
         </div>
     </div>
+    
 
     
 

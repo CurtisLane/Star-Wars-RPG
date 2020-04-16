@@ -1,7 +1,11 @@
+/* --Font-- */
+
 @font-face {
     font-family: distant_galaxy;
     src: url(../font/sf_distant_galaxy/SFDistantGalaxy.ttf);
   }
+
+/* --Elements-- */
 
 html, body {
     font-family: distant_galaxy;
@@ -25,6 +29,20 @@ h1 {
 p {
     color: #000000;
     font-size: .75rem;
+}
+
+button {
+    font-family: distant_galaxy;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    background-image: linear-gradient(to bottom right, lightgray, gray, darkgray);
+    padding: 10px;
+}
+
+/* --Classes-- */
+
+.container {
+    margin: auto;
 }
 
 .characterImage {
@@ -63,9 +81,19 @@ p {
 
 .userMessage {
     position: relative;
-    left: 250px;
+    left: 220px;
 }
 
 .pMessage {
     color: white;
+}
+
+.button {
+    position: relative;
+    left: 265px;
+    top: 60px;
+}
+
+.zeroOpacity {
+    opacity: 0;
 }
