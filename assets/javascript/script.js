@@ -1,6 +1,6 @@
 // Objects -------------------------
 
-// containers for each character. include varied health ponts(hp), attack power(ap)[increases each attack], and counter attack power(cap).
+// Characters and their stats
 let characters = {
     lukeSkywalker: {
         hp: 350, //health power, decreases based on ap or cap of attacker.
@@ -9,7 +9,7 @@ let characters = {
     },
 
     obiWan: {
-        hp: 400, //health power, decreases based on ap or cap of attacker.
+        hp: 8, //health power, decreases based on ap or cap of attacker.
         ap: 8, //must increase after each attack, for loop, add 9ap each event(button press, attack)
         cap: 35, // counter attack points, only applies to enemy, does not change
     },
@@ -27,7 +27,7 @@ let characters = {
     },
 }
 
-// Messages displayed to user
+// Messages displayed to user in-game
 let messages = {
     begin: "Choose your character!",
     attack: "Click the attack button.",
@@ -40,18 +40,12 @@ let messages = {
 
 // Global variables -------------------------
 
-const imgDivIds = ['#lukeSkywalker','#obiWan','#darthMaul','#darthSidious']
 let activeCharacter = null;
 let firstEnemy = null;
 let secondEnemy = null;
 let thridEnemy = null;
 
-
-
-
 // Main -------------------------
-
-// Clicking a character will turn it's background to green and all others to red
 
 //listen for click on character image
 $('.characterImageDiv').click(function(event) {
@@ -88,20 +82,21 @@ $('.characterImageDiv').click(function(event) {
 
             //set firstEnemy to id of clicked  element
             firstEnemy = $(this).attr('id');
-
+            
+            
             // enemy hp is reduced by player ap(incremented) and player hp is reduced by enemy cap
-            if (characters[firstEnemy].hp >= 1 && characters[activeCharacter].hp >=1) {
+            if (characters[firstEnemy].hp > 0 && characters[activeCharacter].hp > 0) {
                 $('#attackButton').click(function() {
                     
                     //reduce enemy hp by active character ap
                     characters[firstEnemy].hp = characters[firstEnemy].hp - characters[activeCharacter].ap;
-                    
+                    console.log(characters[firstEnemy].hp)
                     //update enemy health on DOM
                     $('#' + firstEnemy + "P").text('Health: ' + characters[firstEnemy].hp);
                     
                     //activeCharacter attack power increments each attack
                     characters[activeCharacter].ap = characters[activeCharacter].ap + 8;
-                    console.log('player ap j' + characters[activeCharacter].ap)
+                    console.log('player ap ' + characters[activeCharacter].ap)
 
                     //reduce activeCharacter hp by firstEnemy cap
                     characters[activeCharacter].hp = characters[activeCharacter].hp - characters[firstEnemy].cap;
@@ -110,12 +105,13 @@ $('.characterImageDiv').click(function(event) {
                     $('#' + activeCharacter + "P").text('Health: ' + characters[activeCharacter].hp);
 
                 });
+
             } else if (characters[activeCharacter].hp <= 0) {
                 $('#pMessage').text(messages.playerDefeated);
-                console.log('player health <= 0')
-            } else {
+                console.log('player health is out')
+            } else if (characters[$(this).attr('id')].hp === 0) {
                 $('#pMessage').text(messages.firstEnemyDefeated);
-                console.log('enemy health <= 0')
+                console.log('enemy health is out')
             };
 
         }
@@ -124,23 +120,13 @@ $('.characterImageDiv').click(function(event) {
     
 });
 
-     
-
-//after choosing enemy make attack button appears. 
-//clicking button subtracts your ap from their hp. 
-//ap increments each attack.
-
-//enemy character only has counter attack power[never changes]
-
 // DOM manipulation -------------------------
 
-// add hp to dom
+// add starting hp to dom
 $("#lukeSkywalkerP").append('Health: ' + characters.lukeSkywalker.hp);
 $("#obiWanP").append('Health: ' + characters.obiWan.hp);
 $("#darthMaulP").append('Health: ' + characters.darthMaul.hp);
 $("#darthSidiousP").append('Health: ' + characters.darthSidious.hp);
 
-// user message
+// initial user message
 $('#pMessage').text(messages.begin);
-
-// Function calls -------------------------
