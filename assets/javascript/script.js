@@ -83,8 +83,6 @@ $('.characterImageDiv').click(function(event) {
 
             //set firstEnemy to id of clicked  element
             firstEnemy = $(this).attr('id');
-            
-            
 
             //attack button for first enemy
             $('#attackButton').click(function() {
@@ -99,9 +97,10 @@ $('.characterImageDiv').click(function(event) {
                     $('#' + firstEnemy + "P").text('Health: ' + characters[firstEnemy].hp);
                     
                     //activeCharacter attack power increments each attack
-                    characters[activeCharacter].ap = characters[activeCharacter].ap + 2;
+                    characters[activeCharacter].ap = characters[activeCharacter].ap * 2;
                     console.log('player ap ' + characters[activeCharacter].ap);
 
+                    // check for enemy hp before counter attack
                     if (characters[firstEnemy].hp > 0){
                         //reduce activeCharacter hp by firstEnemy cap
                         characters[activeCharacter].hp = characters[activeCharacter].hp - characters[firstEnemy].cap;
@@ -115,19 +114,142 @@ $('.characterImageDiv').click(function(event) {
                             console.log('player defeated');     
                         };
                     
-                        // when enemy is defeated
+                    // when enemy is defeated
                     } else if (characters[firstEnemy].hp <= 0) {
                         $('#pMessage').text(messages.firstEnemyDefeated);
                         console.log('enemy defeated');
-                    };
+                        $('#' + firstEnemy).addClass('grayBackground').removeClass('redBackground'); 
+                        
+                        
+
+                    };  // *close - check for enemy hp before counter attack
                 
                 };  // *close - check for enemy and player hp 
 
             }); // *close - attack button for first enemy
             
-
-        };   // *close - only listens for click if firstEnemy has not been chosen
+        }
         
+        //listen for click on second enemy
+        if ($(this).attr('class').includes('redBackground') && characters[firstEnemy].hp <= 0){ 
+        
+            //only listens for click if secondEnemy has not been chosen
+            if (secondEnemy === null){
+                
+                $(this).addClass('chosenEnemy');
+            
+                //change message to user
+                $('#pMessage').text(messages.attack);
+
+                //set secondEnemy to id of clicked element
+                secondEnemy = $(this).attr('id');
+
+                //attack button for second enemy
+                $('#attackButton').click(function() {
+
+                    //check for enemy and player hp 
+                    if (characters[activeCharacter].hp > 0 && characters[secondEnemy].hp > 0) {
+                    
+                        //reduce enemy hp by active character ap
+                        characters[secondEnemy].hp = characters[secondEnemy].hp - characters[activeCharacter].ap;
+                        console.log(characters[secondEnemy].hp);
+                        //update enemy health on DOM
+                        $('#' + secondEnemy + "P").text('Health: ' + characters[secondEnemy].hp);
+                        
+                        //activeCharacter attack power increments each attack
+                        characters[activeCharacter].ap = characters[activeCharacter].ap * 2;
+                        console.log('player ap ' + characters[activeCharacter].ap);
+
+                        // check for enemy hp before counter attack
+                        if (characters[secondEnemy].hp > 0){
+                            //reduce activeCharacter hp by secondEnemy cap
+                            characters[activeCharacter].hp = characters[activeCharacter].hp - characters[secondEnemy].cap;
+
+                            //update activeCharacter health on DOM
+                            $('#' + activeCharacter + "P").text('Health: ' + characters[activeCharacter].hp);
+                        
+                            // when player is defeated
+                            if (characters[activeCharacter].hp <= 0) {
+                                $('#pMessage').text(messages.playerDefeated);
+                                console.log('player defeated');     
+                            };
+                        
+                        // when enemy is defeated
+                        } else if (characters[secondEnemy].hp <= 0) {
+                            $('#pMessage').text(messages.secondEnemyDefeated);
+                            console.log('enemy defeated');
+                            $('#' + secondEnemy).addClass('grayBackground').removeClass('redBackground');  
+                        };
+                    
+                    };  // *close - check for enemy and player hp 
+
+                }); // *close - attack button for second enemy
+
+            }; // *close - only listens for click if secondEnemy has not been chosen
+
+        };   // *close - listen for click on second enemy
+
+
+        //listen for click on third enemy
+        if ($(this).attr('class').includes('redBackground') && characters[secondEnemy].hp <= 0){ 
+        
+            //only listens for click if secondEnemy has not been chosen
+            if (thridEnemy === null){
+                
+                $(this).addClass('chosenEnemy');
+            
+                //change message to user
+                $('#pMessage').text(messages.attack);
+
+                //set thirdEnemy to id of clicked element
+                thridEnemy = $(this).attr('id');
+
+                //attack button for second enemy
+                $('#attackButton').click(function() {
+
+                    //check for enemy and player hp 
+                    if (characters[activeCharacter].hp > 0 && characters[thridEnemy].hp > 0) {
+                    
+                        //reduce enemy hp by active character ap
+                        characters[thridEnemy].hp = characters[thridEnemy].hp - characters[activeCharacter].ap;
+                        console.log(characters[thridEnemy].hp);
+                        //update enemy health on DOM
+                        $('#' + thridEnemy + "P").text('Health: ' + characters[thridEnemy].hp);
+                        
+                        //activeCharacter attack power increments each attack
+                        characters[activeCharacter].ap = characters[activeCharacter].ap * 2;
+                        console.log('player ap ' + characters[activeCharacter].ap);
+
+                        // check for enemy hp before counter attack
+                        if (characters[thridEnemy].hp > 0){
+                            //reduce activeCharacter hp by thirdEnemy cap
+                            characters[activeCharacter].hp = characters[activeCharacter].hp - characters[thridEnemy].cap;
+
+                            //update activeCharacter health on DOM
+                            $('#' + activeCharacter + "P").text('Health: ' + characters[activeCharacter].hp);
+                        
+                            // when player is defeated
+                            if (characters[activeCharacter].hp <= 0) {
+                                $('#pMessage').text(messages.playerDefeated);
+                                console.log('player defeated');     
+                            };
+                        
+                        // when enemy is defeated
+                        } else if (characters[thridEnemy].hp <= 0) {
+                            $('#pMessage').text(messages.thirdEnemyDefeated);
+                            console.log('enemy defeated');
+                            $('#' + thridEnemy).addClass('grayBackground').removeClass('redBackground');  
+                        };
+                    
+                    };  // *close - check for enemy and player hp 
+
+                }); // *close - attack button for third enemy
+
+            }; // *close - only listens for click if thirdEnemy has not been chosen
+
+        };   // *close - listen for click on second enemy
+
+
     };   // *close - player can now choose enemy
     
 }); // *close - listen for click on character image

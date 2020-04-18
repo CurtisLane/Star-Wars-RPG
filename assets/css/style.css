@@ -11,7 +11,7 @@ html, body {
     font-family: distant_galaxy;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 body {
     background-image: url(../images/background01.jpg);
@@ -72,6 +72,11 @@ button {
 .greenBackground {
     background-color: green !important;
     border-color: green !important;
+}
+
+.grayBackground {
+    background-color: gray;
+    border-color: gray;
 }
 
 .chosenEnemy {
