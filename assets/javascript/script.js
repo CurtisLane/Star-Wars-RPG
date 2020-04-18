@@ -9,7 +9,7 @@ let characters = {
     },
 
     obiWan: {
-        hp: 8, //health power, decreases based on ap or cap of attacker.
+        hp: 400, //health power, decreases based on ap or cap of attacker.
         ap: 8, //must increase after each attack, for loop, add 9ap each event(button press, attack)
         cap: 35, // counter attack points, only applies to enemy, does not change
     },
@@ -40,10 +40,16 @@ let messages = {
 
 // Global variables -------------------------
 
+//used for .click event listener functions
 let activeCharacter = null;
 let firstEnemy = null;
 let secondEnemy = null;
 let thridEnemy = null;
+
+// unused variables in case I need them later
+let enemyHp = [characters[firstEnemy].hp];
+let activeCharacterHp = [characters[activeCharacter].hp];
+let activeCharacterAp = [characters[activeCharacter].ap];
 
 // Main -------------------------
 
@@ -84,10 +90,13 @@ $('.characterImageDiv').click(function(event) {
             firstEnemy = $(this).attr('id');
             
             
-            // enemy hp is reduced by player ap(incremented) and player hp is reduced by enemy cap
-            if (characters[firstEnemy].hp > 0 && characters[activeCharacter].hp > 0) {
-                $('#attackButton').click(function() {
-                    
+
+            //attack button for first enemy
+            $('#attackButton').click(function() {
+
+                //check for enemy and player hp 
+                if (characters[firstEnemy].hp > 1 && characters[activeCharacter].hp > 1) {
+                
                     //reduce enemy hp by active character ap
                     characters[firstEnemy].hp = characters[firstEnemy].hp - characters[activeCharacter].ap;
                     console.log(characters[firstEnemy].hp)
@@ -103,22 +112,25 @@ $('.characterImageDiv').click(function(event) {
 
                     //update activeCharacter health on DOM
                     $('#' + activeCharacter + "P").text('Health: ' + characters[activeCharacter].hp);
+                
+                // when player is defeated
+                } else if (characters[activeCharacter].hp <= 0) {
+                        $('#pMessage').text(messages.playerDefeated);
+                        console.log('player health is out')
+                // when enemy is defeated
+                } else if (characters[firstEnemy].hp <= 0) {
+                        $('#pMessage').text(messages.firstEnemyDefeated);
+                        console.log('enemy health is out')
+                
+                };  // *close - check for enemy and player hp 
 
-                });
+            }); // *close - attack button for first enemy
 
-            } else if (characters[activeCharacter].hp <= 0) {
-                $('#pMessage').text(messages.playerDefeated);
-                console.log('player health is out')
-            } else if (characters[$(this).attr('id')].hp === 0) {
-                $('#pMessage').text(messages.firstEnemyDefeated);
-                console.log('enemy health is out')
-            };
-
-        }
+        };   // *close - only listens for click if firstEnemy has not been chosen
         
-    }
+    };   // *close - player can now choose enemy
     
-});
+}); // *close - listen for click on character image
 
 // DOM manipulation -------------------------
 
