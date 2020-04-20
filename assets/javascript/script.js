@@ -5,27 +5,27 @@ $(document).ready(function() {
     // Characters and their stats
     let characters = {
         lukeSkywalker: {
-            hp: 120, //health power, decreases based on ap or cap of attacker.
-            ap: 8, //must increase after each attack, for loop, add 12ap each event(button press, attack)
-            cap: 6, // counter attack points, only applies to enemy, does not change
+            hp: 115, // health power, decreases based on ap or cap of attacker.
+            ap: 8, // attack power, reduce enemy hp, increase by 8 after each attack
+            cap: 5, // counter attack power, reduce player hp, does not change
         },
 
         obiWan: {
-            hp: 100, //health power, decreases based on ap or cap of attacker.
-            ap: 8, //must increase after each attack, for loop, add 9ap each event(button press, attack)
-            cap: 5, // counter attack points, only applies to enemy, does not change
+            hp: 110, // health power, decreases based on ap or cap of attacker.
+            ap: 8, // attack power, reduce enemy hp, increase by 8 after each attack
+            cap: 10, // counter attack ower, reduce player hpy, does not change
         },
 
         darthMaul: {
-            hp: 150, //health power, decreases based on ap or cap of attacker.
-            ap: 8, //must increase after each attack, for loop, add 10ap each event(button press, attack)
-            cap: 20, // counter attack points, only applies to enemy, does not change
+            hp: 110, // health power, decreases based on ap or cap of attacker.
+            ap: 2, // attack power, reduce enemy hp, increase by 8 after each attack
+            cap: 25, // counter attack ower, reduce player hpy, does not change
         },
 
         darthSidious: {
-            hp: 180, //health power, decreases based on ap or cap of attacker.
-            ap: 8, //must increase after each attack, for loop, add 4ap each event(button press, attack)
-            cap: 25, // counter attack points, only applies to enemy, does not change
+            hp: 120, // health power, decreases based on ap or cap of attacker.
+            ap: 8, // attack power, reduce enemy hp, increase by 8 after each attack
+            cap: 20, // counter attack ower, reduce player hpy, does not change
         },
     }
 
@@ -75,6 +75,8 @@ $(document).ready(function() {
             
             //only listens for click if firstEnemy has not been chosen
             if (firstEnemy === null){
+                
+                // move firstEnemy to fighting area
                 $(this).addClass('chosenEnemy');
                 
                 //attack button appears on screen
@@ -94,16 +96,16 @@ $(document).ready(function() {
                     
                         //reduce enemy hp by active character ap
                         characters[firstEnemy].hp = characters[firstEnemy].hp - characters[activeCharacter].ap;
-                        console.log(characters[firstEnemy].hp);
+                        
                         //update enemy health on DOM
                         $('#' + firstEnemy + "P").text('Health: ' + characters[firstEnemy].hp);
                         
                         //activeCharacter attack power increments each attack
                         characters[activeCharacter].ap = characters[activeCharacter].ap + 8;
-                        console.log('player ap ' + characters[activeCharacter].ap);
 
                         // check for enemy hp before counter attack
                         if (characters[firstEnemy].hp > 0){
+                            
                             //reduce activeCharacter hp by firstEnemy cap
                             characters[activeCharacter].hp = characters[activeCharacter].hp - characters[firstEnemy].cap;
 
@@ -112,9 +114,17 @@ $(document).ready(function() {
                         
                             // when player is defeated
                             if (characters[activeCharacter].hp <= 0) {
+                                
+                                // diplay message to user
                                 $('#pMessage').text(messages.playerDefeated);
+                                
+                                // health replaced by "Defeated"
                                 $('#' + activeCharacter + 'P').text('Defeated!');
-                                //reset button appears on screen
+                                
+                                // background color change from green to gray
+                                $('#' + activeCharacter).removeClass('greenBackground').addClass('grayBackground');
+                                
+                                // reset button appears on screen, reloads page
                                 $('#resetButton').removeClass('zeroOpacity').click(function(){
                                     location.reload();
                                 });
@@ -122,9 +132,14 @@ $(document).ready(function() {
                         
                         // when enemy is defeated
                         } else if (characters[firstEnemy].hp <= 0) {
+                            
+                            // display message to user
                             $('#pMessage').text(messages.firstEnemyDefeated);
-                            console.log('enemy defeated');
+                            
+                            // change background color from red to gray
                             $('#' + firstEnemy).addClass('grayBackground').removeClass('redBackground chosenEnemy'); 
+                            
+                            // change health to "Defeated"
                             $('#' + firstEnemy + 'P').text('Defeated!');
 
                         };  // *close - check for enemy hp before counter attack
@@ -135,38 +150,39 @@ $(document).ready(function() {
                 
             }
             
-            //listen for click on second enemy
+            // listen for click on second enemy
             if ($(this).attr('class').includes('redBackground') && characters[firstEnemy].hp <= 0){ 
             
-                //only listens for click if secondEnemy has not been chosen
+                // only listens for click if secondEnemy has not been chosen
                 if (secondEnemy === null){
                     
+                    // move secondEnemy to fighting area
                     $(this).addClass('chosenEnemy');
                 
-                    //change message to user
+                    // change message to user
                     $('#pMessage').text(messages.attack);
 
-                    //set secondEnemy to id of clicked element
+                    // set secondEnemy to id of clicked element
                     secondEnemy = $(this).attr('id');
 
-                    //attack button for second enemy
+                    // attack button for second enemy
                     $('#attackButton').click(function() {
 
-                        //check for enemy and player hp 
+                        // check for enemy and player hp 
                         if (characters[activeCharacter].hp > 0 && characters[secondEnemy].hp > 0) {
                         
                             //reduce enemy hp by active character ap
                             characters[secondEnemy].hp = characters[secondEnemy].hp - characters[activeCharacter].ap;
-                            console.log(characters[secondEnemy].hp);
+
                             //update enemy health on DOM
                             $('#' + secondEnemy + "P").text('Health: ' + characters[secondEnemy].hp);
                             
                             //activeCharacter attack power increments each attack
                             characters[activeCharacter].ap = characters[activeCharacter].ap + 8;
-                            console.log('player ap ' + characters[activeCharacter].ap);
 
                             // check for enemy hp before counter attack
                             if (characters[secondEnemy].hp > 0){
+                                
                                 //reduce activeCharacter hp by secondEnemy cap
                                 characters[activeCharacter].hp = characters[activeCharacter].hp - characters[secondEnemy].cap;
 
@@ -175,8 +191,16 @@ $(document).ready(function() {
                             
                                 // when player is defeated
                                 if (characters[activeCharacter].hp <= 0) {
+                                    
+                                    // update user message
                                     $('#pMessage').text(messages.playerDefeated);
+                                    
+                                    // change health to "Defeated"
                                     $('#' + activeCharacter + 'P').text('Defeated!');
+                                    
+                                    // change background color from red to gray
+                                    $('#' + activeCharacter).removeClass('greenBackground').addClass('grayBackground');
+                                    
                                     //reset button appears on screen
                                     $('#resetButton').removeClass('zeroOpacity').click(function(){
                                         location.reload();
@@ -185,9 +209,14 @@ $(document).ready(function() {
                             
                             // when enemy is defeated
                             } else if (characters[secondEnemy].hp <= 0) {
+                                
+                                // update message to user
                                 $('#pMessage').text(messages.secondEnemyDefeated);
-                                console.log('enemy defeated');
+
+                                // change background color from red to gray
                                 $('#' + secondEnemy).addClass('grayBackground').removeClass('redBackground chosenEnemy');
+                                
+                                // change health to "Defeated"
                                 $('#' + secondEnemy + 'P').text('Defeated!');
   
                             };
@@ -207,6 +236,7 @@ $(document).ready(function() {
                 //only listens for click if secondEnemy has not been chosen
                 if (thirdEnemy === null){
                     
+                    // move thirdEnemy to fighting area
                     $(this).addClass('chosenEnemy');
                 
                     //change message to user
@@ -223,16 +253,16 @@ $(document).ready(function() {
                         
                             //reduce enemy hp by active character ap
                             characters[thirdEnemy].hp = characters[thirdEnemy].hp - characters[activeCharacter].ap;
-                            console.log(characters[thirdEnemy].hp);
+
                             //update enemy health on DOM
                             $('#' + thirdEnemy + "P").text('Health: ' + characters[thirdEnemy].hp);
                             
                             //activeCharacter attack power increments each attack
                             characters[activeCharacter].ap = characters[activeCharacter].ap + 8;
-                            console.log('player ap ' + characters[activeCharacter].ap);
 
                             // check for enemy hp before counter attack
                             if (characters[thirdEnemy].hp > 0){
+                                
                                 //reduce activeCharacter hp by thirdEnemy cap
                                 characters[activeCharacter].hp = characters[activeCharacter].hp - characters[thirdEnemy].cap;
 
@@ -241,20 +271,39 @@ $(document).ready(function() {
                             
                                 // when player is defeated
                                 if (characters[activeCharacter].hp <= 0) {
+                                    
+                                    // update message to user
                                     $('#pMessage').text(messages.playerDefeated);
+                                   
+                                    // change health to "Defeated"
                                     $('#' + activeCharacter + 'P').text('Defeated!');
+                                   
+                                    // change background color from green to gray
+                                    $('#' + activeCharacter).removeClass('greenBackground').addClass('grayBackground');
+                                    
                                     //reset button appears on screen
                                     $('#resetButton').removeClass('zeroOpacity').click(function(){
                                         location.reload();
+                                    
                                     });   
                                 };
                             
                             // when enemy is defeated
                             } else if (characters[thirdEnemy].hp <= 0) {
+                                
+                                // update user message
                                 $('#pMessage').text(messages.thirdEnemyDefeated);
-                                console.log('enemy defeated');
+                                
+                                // change background color from red to gray
                                 $('#' + thirdEnemy).addClass('grayBackground').removeClass('redBackground chosenEnemy');
+                                
+                                // change health to "Defeated"
                                 $('#' + thirdEnemy + 'P').text('Defeated!');
+                                
+                                // reset button appears, reloads page
+                                $('#resetButton').removeClass('zeroOpacity').click(function(){
+                                    location.reload();
+                                });
                             };
                         
                         };  // *close - check for enemy and player hp 
@@ -281,7 +330,3 @@ $(document).ready(function() {
     $('#pMessage').text(messages.begin);
 
 });
-
-// add reset button if player is defeated
-// make attack button disappear again when choosing next enemy
-//display to user your ap vs enemy cap
