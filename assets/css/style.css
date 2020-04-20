@@ -11,7 +11,7 @@ html, body {
     font-family: distant_galaxy;
     width: 100%;
     height: 100%;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 body {
     background-image: url(../images/background01.jpg);
@@ -22,7 +22,7 @@ body {
 h1 {
     text-align: center;
     font-size: 3rem;
-    margin: 1rem auto;
+    margin: .5rem auto;
     color: #ffffff;
 }
 
@@ -61,7 +61,7 @@ button {
 
 .characterImagesContainer {
     width: 100%;  
-    margin: auto;  
+    margin: -3rem auto auto auto;  
 }
 
 .redBackground {
@@ -85,18 +85,30 @@ button {
 }
 
 .userMessage {
-    position: relative;
-    left: 220px;
+    margin: auto;
+    text-align: center;
 }
 
 .pMessage {
     color: white;
+    font-size: 1rem;
+
 }
 
 .button {
     position: relative;
     left: 265px;
     top: 60px;
+    margin: 0;
+    padding: 0;
+}
+
+.rButton {
+    position: relative;
+    left: 265px;
+    top: 100px;
+    margin: 0;
+    padding: 0;
 }
 
 .zeroOpacity {
