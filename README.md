@@ -18,22 +18,22 @@
 
 ### Functions: 
     1. Message displayed to user: Choose your character.
-        1. Clicking any of the four images will select your character.
-        1. Selected character background turns green, all others become red.
-    1. Message displayed to user: Choose your first enemy.
-        1. Clicking any of the three images with a red background will move that image to the enemy fighting area.
-    1. Attack button appears, message displayed to user: Click the attack button.
-        1. Clicking the attack button reduces the enemy health by a certain attack power.
-        1. Player attack power increases with every attack.
-        1. Player health is then reduced by the amount of enemy counter attack power.
-        1. Enemy counter attack power does not change.
-    1. If the enemy runs out of health before the player, message displayed to user: You defeated the firs (or 'second') enemy, choose your next enemy (or 'final opponent').
-        1. Enemy is moved back in line with other images and background turns gray.
-        1. Reset button appears which reloads the page.
-    1. If the player runs out of health before the enemy, message displayed to user: You lose. Try again.
-        1. Player background becomes gray.
-        1. Reset button appears which reloads the page.
-    1. If the player defeats all three enemies, message displayed to user: You win, Congratulations!
-        1. Reset button appears which reloads the page. 
+        1a. Clicking any of the four images will select your character.
+        1b. Selected character background turns green, all others become red.
+    2. Message displayed to user: Choose your first enemy.
+        2a. Clicking any of the three images with a red background will move that image to the enemy fighting area.
+    3. Attack button appears, message displayed to user: Click the attack button.
+        3a. Clicking the attack button reduces the enemy health by player attack power.
+        3b. Player attack power increases with every attack.
+        3c. Player health is then reduced by the amount of enemy counter attack power.
+        3d. Enemy counter attack power does not change.
+    4. If the enemy runs out of health before the player, message displayed to user: You defeated the firs (or 'second') enemy, choose your next enemy (or 'final opponent').
+        4a. Enemy is moved back in line with other images and background turns gray.
+        4b. Reset button appears which reloads the page.
+    5. If the player runs out of health before the enemy, message displayed to user: You lose. Try again.
+        5a. Player background becomes gray.
+        5b. Reset button appears which reloads the page.
+    6. If the player defeats all three enemies, message displayed to user: You win, Congratulations!
+        6a. Reset button appears which reloads the page. 
 
 
