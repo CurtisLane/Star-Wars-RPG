@@ -1,4 +1,4 @@
-$(document).ready(function() {    
+$(document).ready(function() { // waits till page has loaded to run code
     
     // Objects -------------------------
 
@@ -329,4 +329,4 @@ $(document).ready(function() {
     // initial user message
     $('#pMessage').text(messages.begin);
 
-});
+}); // *close document ready function
