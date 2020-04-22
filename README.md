@@ -36,4 +36,4 @@
     6. If the player defeats all three enemies, message displayed to user: You win, Congratulations!
         6a. Reset button appears which reloads the page. 
 
-
+### Play the game here: [Star Wars RPG](https://curtislane.github.io/unit-4-game/)
