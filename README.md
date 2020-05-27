@@ -1,4 +1,3 @@
-# unit-4-game
 ## Star Wars role playing game using jQuery
 
 ### Play the game here: [Star Wars RPG](https://curtislane.github.io/unit-4-game/)
