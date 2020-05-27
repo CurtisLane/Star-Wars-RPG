@@ -18,6 +18,9 @@
         * [javascript](./assets/javascript)
             * [script.js](./assets/javascript/script.js)
 
+            ![picture](assets/images/StarWarsRPG.jpg)
+
+
 ### Functions: 
     1. Message displayed to user: Choose your character.
         1a. Clicking any of the four images will select your character.
